@@ -1,14 +1,14 @@
 pipeline {
     agent any
 
-    stage('Checkout') {
-        steps {
+    stages {
+        stage('Checkout') {
+            steps {
                 git credentialsId: 'git-token',
-                url: 'https://github.com/Ayyappa-VedaVyas/sampleProject1.git',
-                branch: 'main'
+                    url: 'https://github.com/Ayyappa-VedaVyas/sampleProject1.git',
+                    branch: 'main'
             }
         }
-
 
         stage('Build Images') {
             steps {
