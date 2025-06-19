@@ -1,13 +1,6 @@
 pipeline {
   agent any
 
-  stages {
-    stage('Checkout') {
-      steps {
-        git branch: 'main', url: 'https://github.com/vedavyas2498/sample-project-1.git'
-      }
-    }
-
     stage('Build Images') {
       steps {
         sh 'docker-compose build'
