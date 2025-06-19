@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git credentialsId: 'github-token',
-                    url: 'https://github.com/vedavyas2498/sample-project-1.git',
+                    url: 'git https://github.com/Ayyappa-VedaVyas/sampleProject1.git',
                     branch: 'main'
             }
         }
