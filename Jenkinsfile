@@ -12,22 +12,22 @@ pipeline {
 
         stage('Build Images') {
             steps {
-                sh 'docker-compose build'
+                bat 'docker-compose build'
             }
         }
 
         stage('Tag & Push') {
             steps {
-                sh 'docker tag project_1-frontend vedavyas2498/frontend:v1'
-                sh 'docker tag project_1-python vedavyas2498/backend:v1'
-                sh 'docker push vedavyas2498/frontend:v1'
-                sh 'docker push vedavyas2498/backend:v1'
+                bat 'docker tag project_1-frontend vedavyas2498/frontend:v1'
+                bat 'docker tag project_1-python vedavyas2498/backend:v1'
+                bat 'docker push vedavyas2498/frontend:v1'
+                bat 'docker push vedavyas2498/backend:v1'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker-compose up -d'
+                bat 'docker-compose up -d'
             }
         }
     }
