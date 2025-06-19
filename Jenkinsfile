@@ -26,6 +26,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker-token', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     bat """
                         echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
+                        docker compose down
                         docker tag project_1-frontend %FRONTEND_IMAGE%
                         docker tag project_1-python %BACKEND_IMAGE%
                         docker push %FRONTEND_IMAGE%
