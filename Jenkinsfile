@@ -28,5 +28,15 @@ pipeline {
         sh 'docker-compose up -d'
       }
     }
+
+    stage('Checkout') {
+    steps {
+        git credentialsId: 'github-token',
+            url: 'https://github.com/vedavyas2498/sample-project-1.git',
+            branch: 'main'
+        }
+    }
+
   }
 }
+
