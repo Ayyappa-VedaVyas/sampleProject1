@@ -1,35 +1,34 @@
 pipeline {
-  agent any
+    agent any
 
-    stage('Build Images') {
-      steps {
-        sh 'docker-compose build'
-      }
-    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git credentialsId: 'github-token',
+                    url: 'https://github.com/vedavyas2498/sample-project-1.git',
+                    branch: 'main'
+            }
+        }
 
-    stage('Tag & Push') {
-      steps {
-        sh 'docker tag project_1-frontend vedavyas2498/frontend:v1'
-        sh 'docker tag project_1-python vedavyas2498/backend:v1'
-        sh 'docker push vedavyas2498/frontend:v1'
-        sh 'docker push vedavyas2498/backend:v1'
-      }
-    }
+        stage('Build Images') {
+            steps {
+                sh 'docker-compose build'
+            }
+        }
 
-    stage('Deploy') {
-      steps {
-        sh 'docker-compose up -d'
-      }
-    }
+        stage('Tag & Push') {
+            steps {
+                sh 'docker tag project_1-frontend vedavyas2498/frontend:v1'
+                sh 'docker tag project_1-python vedavyas2498/backend:v1'
+                sh 'docker push vedavyas2498/frontend:v1'
+                sh 'docker push vedavyas2498/backend:v1'
+            }
+        }
 
-    stage('Checkout') {
-    steps {
-        git credentialsId: 'github-token',
-            url: 'https://github.com/vedavyas2498/sample-project-1.git',
-            branch: 'main'
+        stage('Deploy') {
+            steps {
+                sh 'docker-compose up -d'
+            }
         }
     }
-
-  }
 }
-
