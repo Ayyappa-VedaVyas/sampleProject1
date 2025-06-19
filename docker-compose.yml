@@ -1,0 +1,11 @@
+version: '3'
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "8081:80"
+
+  python:
+    build: ./python
+    ports:
+      - "5000:5000"
